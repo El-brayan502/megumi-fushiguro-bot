@@ -70,7 +70,7 @@ END:VCARD`
 > Fecha: ${date}
 `.trim(),
 
-        footer: `© Welcome to the group`,
+        footer: `© ${botname} · Welcome`,
 
         interactiveButtons: [
           {
