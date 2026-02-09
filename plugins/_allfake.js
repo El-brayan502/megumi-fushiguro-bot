@@ -10,7 +10,7 @@ handler.all = async function (m, { conn }) {
     global.iconorcanal = 'https://raw.githubusercontent.com/El-brayan502/img/upload/uploads/6bd2c3-1770600514663.jpg'
 
     global.idcanal = '120363417186717632@newsletter' 
-    global.nombrecanal = '☘️ Nagi Seiishiro'
+    global.nombrecanal = '🐺 megumi fushiguro'
 
     global.rcanal = {
       contextInfo: {
