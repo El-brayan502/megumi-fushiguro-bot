@@ -24,7 +24,7 @@ pkg install git nodejs ffmpeg imagemagick -y
 ```
 
 ```bash
-git clone https://github.com/El-brayan502/NagiBotV3
+git clone https://github.com/El-brayan502/megumi-fushiguro-bot
 ```
 
 ```bash
