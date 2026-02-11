@@ -11,7 +11,6 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   let user = global.db.data.users[who]
   let nombre = await conn.getName(who)
-  let premium = user?.premium ? '✅ Sí' : '❌ No'
   let limite = user?.limit ?? 0
   let totalUsers = Object.keys(global.db.data.users).length
   let groupsCount = Object.values(conn.chats).filter(v => v.id.endsWith('@g.us')).length
