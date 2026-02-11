@@ -25,11 +25,9 @@ let handler = async (m, { conn, args }) => {
     const data = json.result
     const videoUrl = data.cover.play
 
-    // ⚡ descarga directa a buffer (rápido)
     const videoRes = await fetch(videoUrl)
     const buffer = Buffer.from(await videoRes.arrayBuffer())
 
-    // 📩 info
     await conn.sendMessage(
       m.chat,
       {
@@ -45,7 +43,6 @@ let handler = async (m, { conn, args }) => {
       { quoted: m }
     )
 
-    // 🎬 video
     await conn.sendMessage(
       m.chat,
       {
