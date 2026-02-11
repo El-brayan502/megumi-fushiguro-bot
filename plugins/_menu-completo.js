@@ -3,71 +3,63 @@ let handler = async (m, { conn, usedPrefix }) => {
   const taguser = `@${who.split('@')[0]}`
   const botname = global.botname || 'Nagi Bot'
 
-  // 📷 Imagen fija (NO perfil → no loading)
-  const image = 'https://raw.githubusercontent.com/El-brayan502/img/upload/uploads/ca4a01-1770600773657.jpg'
+  const file = 'https://raw.githubusercontent.com/El-brayan502/img/upload/uploads/ca4a01-1770600773657.jpg'
 
-  // 📦 Obtener comandos reales
-  let commands = Object.values(global.plugins)
-    .filter(v => v.help && v.tags)
-    .map(v => ({
-      help: Array.isArray(v.help) ? v.help : [v.help],
-      tags: Array.isArray(v.tags) ? v.tags : [v.tags]
-    }))
+  // ───── estilo de texto ─────
+  const stylize = s => s.toLowerCase().replace(/[a-z]/g, c => ({
+    a:'ᴀ', b:'ʙ', c:'ᴄ', d:'ᴅ', e:'ᴇ', f:'ꜰ', g:'ɢ',
+    h:'ʜ', i:'ɪ', j:'ᴊ', k:'ᴋ', l:'ʟ', m:'ᴍ', n:'ɴ',
+    o:'ᴏ', p:'ᴘ', q:'ǫ', r:'ʀ', s:'ꜱ', t:'ᴛ', u:'ᴜ',
+    v:'ᴠ', w:'ᴡ', x:'x', y:'ʏ', z:'ᴢ'
+  }[c] || c))
 
-  // 🏷️ Categorías
-  let tags = {
-    main: 'main-cmd',
-    fun: 'fun-cmd',
-    nsfw: 'nsfw-cmd',
-    search: 'search-cmd',
-    games: 'games-cmd',
-    Generador: 'generador-cmd'
-  }
+  // ───── obtener plugins ─────
+  let plugins = Object.values(global.plugins)
+    .filter(p => p.help && p.tags)
 
-  // 🎨 Estilo
-  let header = '_— %category_'
-  let body = ' └• %cmd'
-  let after = `> 𝖭𝖺𝗀𝗂𝖻𝗈𝗍 ┆ 𝖠𝗌𝗌𝗂𝗌𝗍𝖺𝗇𝗍`
+  let data = plugins.map(p => ({
+    help: Array.isArray(p.help) ? p.help : [p.help],
+    tags: Array.isArray(p.tags) ? p.tags : [p.tags]
+  }))
 
-  // 🧩 Construcción del menú (DINÁMICO)
-  let menu = []
-  for (let tag in tags) {
-    let cmds = commands
-      .filter(cmd => cmd.tags.includes(tag))
-      .map(cmd => cmd.help.map(h =>
-        body.replace('%cmd', usedPrefix + h)
-      ).join('\n'))
-      .join('\n')
+  // ───── detectar categorías automáticamente ─────
+  let categorias = [...new Set(data.flatMap(p => p.tags))]
 
-    if (cmds) {
-      menu.push(
-        header.replace('%category', tags[tag]) +
-        '\n' +
-        cmds
-      )
-    }
-  }
-
-  // 📄 Texto final
-  let finalMenu = `
+  // ───── construir texto FINAL directamente ─────
+  let caption = `
 👤 Usuario: ${taguser}
-
 `.trim()
 
-  // 📦 PRODUCT MESSAGE
-  const productMessage = {
+  for (let tag of categorias) {
+    let comandos = data
+      .filter(p => p.tags.includes(tag))
+      .flatMap(p => p.help)
+      .map(cmd => `│  ◦ ${usedPrefix}${cmd}`)
+      .join('\n')
+
+    if (!comandos) continue
+
+    caption += `
+
+*– ᴍᴇɴᴜ ${stylize(tag)}*
+${comandos}
+└──`
+  }
+
+  // ───── enviar product message ─────
+  await conn.sendMessage(m.chat, {
     product: {
-      productImage: { url: image },
-      productId: '1',
+      productImage: { url: file },
+      productId: '24529689176623820',
       title: botname,
       currencyCode: 'USD',
       priceAmount1000: '0',
-      retailerId: 'nagi',
+      retailerId: 1677,
       productImageCount: 1
     },
     businessOwnerJid: who,
-    caption: finalMenu,
-    footer: '© Nagi Bot · Menu',
+    caption: caption.trim(),
+    footer: '© NagiBot · Menu',
     interactiveButtons: [
       {
         name: 'cta_url',
@@ -78,14 +70,8 @@ let handler = async (m, { conn, usedPrefix }) => {
       }
     ],
     mentions: [who]
-  }
-
-  await conn.sendMessage(m.chat, productMessage)
+  })
 }
 
-handler.help = ['menu', 'help']
-handler.tags = ['main']
-handler.command = ['menu', 'help', 'allmenu']
-handler.register = true
-
+handler.command = ['menu', 'allmenu', 'help']
 export default handler
