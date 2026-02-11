@@ -41,9 +41,9 @@ let handler = async (m, { conn, usedPrefix }) => {
   let categorias = [...new Set(plugins.flatMap(p => p.tags))]
 
   let caption = `
-☃️ *Hola ${nombre}*
+*Hola ${nombre}*
 
-🎳 \`${botname}\` sistema automatizado para comandos, descargas y utilidades.
+\`${botname}\` sistema automatizado para comandos, descargas y utilidades.
 
 👤 *Usuario* ┆ ${taguser}
 🕒 *Hora* ┆ ${hora}
