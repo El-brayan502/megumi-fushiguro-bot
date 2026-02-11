@@ -52,9 +52,6 @@ let handler = async (m, { conn, usedPrefix }) => {
   let finalMenu = `
 👤 Usuario: ${taguser}
 
-${menu.join('\n\n')}
-
-${after}
 `.trim()
 
   // 📦 PRODUCT MESSAGE
