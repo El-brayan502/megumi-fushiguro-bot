@@ -88,7 +88,7 @@ ${comandos}`
       {
         name: 'cta_url',
         buttonParamsJson: JSON.stringify({
-          display_text: '📢 Canal oficial',
+          display_text: 'tap here',
           url: 'https://whatsapp.com/channel/0029Vb6BDQc0lwgsDN1GJ31i'
         })
       }
