@@ -45,18 +45,16 @@ let handler = async (m, { conn, usedPrefix }) => {
 
 🎳 \`${botname}\` sistema automatizado para comandos, descargas y utilidades.
 
-━━━━━━━━━━━━━
 👤 *Usuario* ┆ ${taguser}
 ⭐ *Premium* ┆ ${premium}
 🎟️ *Límite* ┆ ${limite}
 🕒 *Hora* ┆ ${hora}
 📅 *Fecha* ┆ ${fecha}
 🌎 *Zona* ┆ ${zona}
-━━━━━━━━━━━━━
+
 🤖 *Bot activo* ┆ ${uptime}
 👥 *Usuarios* ┆ ${totalUsers}
 👨‍👩‍👧‍👦 *Grupos* ┆ ${groupsCount}
-━━━━━━━━━━━━━
 `.trim()
 
   for (let tag of categorias) {
