@@ -15,9 +15,9 @@ global.mods = []
 global.prems = []
 global.suittag = ['50231458537']
 
-global.botname = '🐺 megumi fushiguro'
+global.botname = '⭐️ Kryzen-MD'
 global.author = 'Brayan330'
-global.sticker = 'sticker created by megumi'
+global.sticker = 'sticker created by Kryzen-MD'
 
 global.sessions = 'Sessions'
 global.jadi = 'JadiBots'
