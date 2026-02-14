@@ -6,6 +6,7 @@
   "type": "module",
   "directories": {
     "lib": "lib",
+    "media": "media",
     "plugins": "plugins"
   },
   "scripts": {
